@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "363611599409",
+    "project_id": "coopslide",
+    "storage_bucket": "coopslide.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363611599409:android:d28d9784411d4d7e601b10",
+        "android_client_info": {
+          "package_name": "com.coopslide.coopslide"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO1V9--zU_xZ00EVYw294MkE5NFzpHwL8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

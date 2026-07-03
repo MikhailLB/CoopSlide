@@ -1,7 +1,7 @@
 name: coopslide
 description: "Coop Slide - Chicken Golf Game"
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: ^3.12.2
@@ -11,8 +11,21 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
+  shared_preferences: ^2.5.2
+  flutter_secure_storage: ^9.2.4
+  connectivity_plus: ^6.0.5
+  http: ^1.2.2
+  device_info_plus: ^10.1.2
+  package_info_plus: ^8.1.2
+  url_launcher: ^6.3.1
   webview_flutter: ^4.10.0
-  shared_preferences: ^2.3.2
+  webview_flutter_android: ^4.7.0
+  file_picker: 8.1.4
+  appsflyer_sdk: ^6.14.2
+  firebase_core: ^3.12.1
+  firebase_messaging: ^15.2.3
+  firebase_app_check: ^0.3.2+4
+  flutter_local_notifications: ^18.0.1
 
 dev_dependencies:
   flutter_test:
@@ -37,19 +50,32 @@ flutter:
     - assets/trampoline.png
     - assets/vertical_loading.jpg
     - assets/water.png
+    - assets/notif/notif_hor.webp
+    - assets/notif/notif_vert.webp
+    - assets/nowifi/nowifi_hor.webp
+    - assets/nowifi/nowifi_vert.webp
 
 flutter_launcher_icons:
   android: "ic_launcher"
   ios: false
-  image_path: "assets/icon.jpg"
+  image_path: "assets/icon.png"
   min_sdk_android: 21
-  # Grass green matching the corners of the icon so the padding around the
-  # foreground blends in visually.
-  adaptive_icon_background: "#7ACB3E"
-  adaptive_icon_foreground: "assets/icon.jpg"
-  # 18% inset — this shrinks the foreground to ~64% of the 108dp layer, which
-  # inscribes inside a full-circle launcher mask (108/√2 ≈ 76dp). Result: the
-  # entire icon image is ALWAYS visible under any launcher shape (circle,
-  # squircle, teardrop, rounded square). The extra green space around it comes
-  # from adaptive_icon_background and matches the icon's grass.
-  adaptive_icon_foreground_inset: 18
+  # `icon_padded.png` is a 1024×1024 canvas produced by placing the original
+  # illustration at 78% scale in the centre and filling the surrounding ring
+  # with the icon's own edge colour (#371326, sampled from the outer border
+  # of the source PNG). That way:
+  #   * the entire artwork (egg, emblem, flames, feathers, bricks) is small
+  #     enough to sit inside the 108dp square with room to spare, so any
+  #     launcher mask (circle / squircle / rounded rect) crops only into the
+  #     matching dark-brick fill, never into the actual illustration;
+  #   * because the fill matches the image's real edge colour, the crop is
+  #     visually indistinguishable from a natural continuation of the icon —
+  #     no bright/empty "colour margins" appear.
+  # Foreground stays transparent so the icon reads as a single image with
+  # no picture-in-picture doubling.
+  adaptive_icon_background: "assets/icon_padded.png"
+  adaptive_icon_foreground: "assets/icon_transparent.png"
+  adaptive_icon_foreground_inset: 0
+  # Legacy square icon uses the same padded canvas so pre-Oreo devices and
+  # any launcher that ignores adaptive icons see the whole illustration too.
+  image_path_android: "assets/icon_padded.png"

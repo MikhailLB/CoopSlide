@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../setup/legal_links.dart';
 import 'level_select_screen.dart';
 import 'webview_screen.dart';
 
-const String kPrivacyUrl = 'https://coopslide.com/privacy-policy.html';
-const String kSupportUrl = 'https://coopslide.com/support.html';
+const String kPrivacyUrl = legalPrivacyUrl;
+const String kSupportUrl = legalSupportUrl;
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
