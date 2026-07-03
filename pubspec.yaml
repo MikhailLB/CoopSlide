@@ -1,0 +1,55 @@
+name: coopslide
+description: "Coop Slide - Chicken Golf Game"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  webview_flutter: ^4.10.0
+  shared_preferences: ^2.3.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/bggamenew.jpg
+    - assets/bgmenu.jpg
+    - assets/chikenball.png
+    - assets/chikenfly.png
+    - assets/dirt.png
+    - assets/fence.png
+    - assets/hole.png
+    - assets/hor_loading.jpg
+    - assets/icon.jpg
+    - assets/mill.png
+    - assets/trampoline.png
+    - assets/vertical_loading.jpg
+    - assets/water.png
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: false
+  image_path: "assets/icon.jpg"
+  min_sdk_android: 21
+  # Grass green matching the corners of the icon so the padding around the
+  # foreground blends in visually.
+  adaptive_icon_background: "#7ACB3E"
+  adaptive_icon_foreground: "assets/icon.jpg"
+  # 18% inset — this shrinks the foreground to ~64% of the 108dp layer, which
+  # inscribes inside a full-circle launcher mask (108/√2 ≈ 76dp). Result: the
+  # entire icon image is ALWAYS visible under any launcher shape (circle,
+  # squircle, teardrop, rounded square). The extra green space around it comes
+  # from adaptive_icon_background and matches the icon's grass.
+  adaptive_icon_foreground_inset: 18
