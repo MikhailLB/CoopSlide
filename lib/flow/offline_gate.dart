@@ -32,9 +32,18 @@ class _OfflineGateState extends State<OfflineGate> {
         : 'assets/nowifi/nowifi_vert.webp';
     // In landscape the background tablet only occupies the central portion of
     // the screen, so constrain the Retry button to a similar width instead of
-    // stretching it across the whole width.
+    // stretching it across the whole width. Two independent trims align the
+    // button to the tablet artwork without moving the untouched edge:
+    //   * LEFT edge is pushed inward by 20 px (extra left padding below);
+    //   * RIGHT edge is pulled inward by 7 px (extra right padding below).
+    // Additionally, the whole button is shifted 20 px to the left (positive
+    // `landscapeShift` = left) — the shift is width-preserving, achieved by
+    // subtracting from the left padding and adding to the right padding.
+    const landscapeLeftTrim = 20.0;
+    const landscapeRightTrim = 7.0;
+    const landscapeShift = 15.0;
     final buttonWidth = landscape
-        ? screenWidth * 0.32
+        ? (screenWidth * 0.32) - landscapeLeftTrim - landscapeRightTrim
         : double.infinity;
 
     return Scaffold(
@@ -47,9 +56,9 @@ class _OfflineGateState extends State<OfflineGate> {
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: EdgeInsets.fromLTRB(
-                  28,
+                  landscape ? 28 + landscapeLeftTrim - landscapeShift : 28,
                   0,
-                  28,
+                  landscape ? 28 + landscapeRightTrim + landscapeShift : 28,
                   landscape ? 24 : 48,
                 ),
                 child: SizedBox(

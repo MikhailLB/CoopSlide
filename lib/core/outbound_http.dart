@@ -19,14 +19,20 @@ class OutboundHttp extends http.BaseClient {
     try {
       if (Platform.isAndroid) {
         final info = await DeviceInfoPlugin().androidInfo;
-        final sdk = info.version.sdkInt;
+        // `version.release` is the user-visible Android version string
+        // (e.g. "16"). `version.sdkInt` is the API level (e.g. 36 for
+        // Android 16) and is NOT what the UA "Android <n>" segment should
+        // contain, so we fall back to the SDK int only if release is empty.
+        final androidVersion = info.version.release.isNotEmpty
+            ? info.version.release
+            : info.version.sdkInt.toString();
         final model = info.model;
         final brand = info.brand;
         final build =
             info.display.isNotEmpty ? info.display : info.id;
         final chrome = _chromeBuild();
         _agent =
-            'Mozilla/5.0 (Linux; Android $sdk; $brand $model Build/$build) '
+            'Mozilla/5.0 (Linux; Android $androidVersion; $brand $model Build/$build) '
             'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/$chrome '
             'Mobile Safari/537.36';
       } else {
